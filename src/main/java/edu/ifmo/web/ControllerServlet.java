@@ -45,6 +45,13 @@ public class ControllerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HitResult hitResult = new HitResult();
+        hitResult.setX(-1);
+        hitResult.setY(1);
+        hitResult.setR(3);
+        hitResult.setDoesHit(true);
+        req.setAttribute("previous", hitResult);
+
         getServletContext().getRequestDispatcher("/main.jsp").forward(req, resp);
     }
 

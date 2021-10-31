@@ -16,9 +16,9 @@ hitDataForm.addEventListener("submit", event => {
 
     let x = parseFloat(xAsStr);
 
-    if (-3 < x && x < 3) {
+    if (!(-3 < x && x < 3)) {
         event.preventDefault();
-        alert("x: " + xAsStr + " не лежит в диапазоне (-5;3)")
+        alert("x: " + xAsStr + " не лежит в диапазоне (-3;3)")
         return
     }
 
@@ -32,9 +32,9 @@ hitDataForm.addEventListener("submit", event => {
 
     let y = parseFloat(xAsStr);
 
-    if (-3 < y && y < 3) {
+    if (!(-3 < y && y < 3)) {
         event.preventDefault();
-        alert("y: " + yAsStr + " не лежит в диапазоне (-5;3)")
+        alert("y: " + yAsStr + " не лежит в диапазоне (-3;3)")
         return
     }
 })

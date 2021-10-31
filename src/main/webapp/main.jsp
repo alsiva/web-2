@@ -1,3 +1,4 @@
+<%@ page import="edu.ifmo.web.HitResult" %>
 <%@ page contentType="text/html;charset=UTF-8"  %>
 <html lang="en">
 <head>
@@ -40,6 +41,30 @@
     </label>
     <button type="submit">submit</button>
 </form>
+<jsp:useBean id="hitStorage" scope="application" class="edu.ifmo.web.HitStorage">
+    <jsp:setProperty name="hitStorage" property="*"/>
+</jsp:useBean>
+<table>
+    <thead>
+    <tr>
+        <th>x:</th>
+        <th>y:</th>
+        <th>Радиус:</th>
+        <th>Попадание:</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% for (HitResult hitResult: hitStorage.getHits()) {%>
+    <tr>
+        <td><%= hitResult.getX() %></td>
+        <td><%= hitResult.getY() %></td>
+        <td><%= hitResult.getR() %></td>
+        <td><%= hitResult.isDoesHit() ? "Попадание есть" : "Попадания нет" %></td>
+    </tr>
+    <%}%>
+    <?php endforeach; ?>
+    </tbody>
+</table>
 <script src="validation.js"></script>
 </body>
 </html>

@@ -1,6 +1,5 @@
 package edu.ifmo.web;
 
-import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +15,15 @@ public class AreaCheckServlet extends HttpServlet {
         float y = (float) req.getAttribute("y");
         float r = (float) req.getAttribute("r");
         boolean doesHit = doesHit(r, x, y);
+
+        HitResult hitResult = new HitResult();
+        hitResult.setX(x);
+        hitResult.setY(y);
+        hitResult.setR(r);
+        hitResult.setDoesHit(doesHit);
+
+        HitStorage hitStorage = (HitStorage) req.getSession().getServletContext().getAttribute("hitStorage");
+        hitStorage.getHits().add(hitResult);
 
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
