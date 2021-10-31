@@ -1,0 +1,50 @@
+img.area {
+    width: 400px;
+}
+
+header {
+    font-family: 'Roboto', sans-serif;
+    color: #333333;
+}
+header ul {
+    list-style: none;
+    padding-left: 0;
+}
+header ul > li {
+    margin-bottom: 8px;
+}
+
+[data-name=alex] {
+    font-weight: 700;
+}
+
+header .cursive {
+    font-style: italic;
+}
+
+.green-box {
+    border: 1px solid #27542d;
+    display: block;
+    margin: 12px 32px;
+    padding: 8px;
+    background: #c2edd9;
+}
+
+.green-box:hover  {
+    background: #89b9a5;
+}
+
+#hitDataForm {
+    margin-top: 24px;
+}
+#hitDataForm > label {
+    display: block;
+    margin-top: 12px;
+}
+#hitDataForm > input {
+    margin-bottom: 4px;
+}
+
+#hitDataForm button[type=submit] {
+    margin-top: 12px;
+}

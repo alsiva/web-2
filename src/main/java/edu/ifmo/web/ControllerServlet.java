@@ -1,6 +1,5 @@
 package edu.ifmo.web;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/")
+@WebServlet("")
 public class ControllerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,7 +20,7 @@ public class ControllerServlet extends HttpServlet {
             float x = Float.parseFloat(xAsString);
             req.setAttribute("x", x);
         } catch (NumberFormatException e) {
-            writeError(resp.getWriter(), "x не число");
+            writeError(resp, "x не число");
             return;
         }
 
@@ -29,7 +28,7 @@ public class ControllerServlet extends HttpServlet {
             float y = Float.parseFloat(yAsString);
             req.setAttribute("y", y);
         } catch (NumberFormatException e) {
-            writeError(resp.getWriter(), "y не число");
+            writeError(resp, "y не число");
             return;
         }
 
@@ -37,13 +36,21 @@ public class ControllerServlet extends HttpServlet {
             float r = Float.parseFloat(rAsString);
             req.setAttribute("r", r);
         } catch (NumberFormatException e) {
-            writeError(resp.getWriter(), "радиус не число");
+            writeError(resp, "радиус не число");
             return;
         }
 
         getServletContext().getRequestDispatcher("/check-area").forward(req, resp);
     }
-    private void writeError(PrintWriter writer, String error) {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        getServletContext().getRequestDispatcher("/main.jsp").forward(req, resp);
+    }
+
+    private void writeError(HttpServletResponse resp, String error) throws IOException {
+        resp.setContentType("text/html;charset=UTF-8");
+        PrintWriter writer = resp.getWriter();
         writer.println("<!DOCTYPE html>");
         writer.println("<html>");
         writer.println("<head>");

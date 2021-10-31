@@ -25,6 +25,7 @@ public class AreaCheckServlet extends HttpServlet {
         writer.println("<head>");
         writer.println("<meta charset=\"UTF-8\">");
         writer.println("<title>Проверка попадания в область</title>");
+        writer.println("<link rel=\"stylesheet\" href=\"check-area.css\">");
         writer.println("</head>");
         writer.println("<body>");
         writer.println("<table>");
@@ -45,6 +46,7 @@ public class AreaCheckServlet extends HttpServlet {
         writer.println("</tr>");
         writer.println("</tbody>");
         writer.println("</table>");
+        writer.println("<a href=\"\">Обратно</a>");
         writer.println("</body>");
         writer.println("</html>");
     }
@@ -52,6 +54,14 @@ public class AreaCheckServlet extends HttpServlet {
     @SuppressWarnings("RedundantIfStatement")
     private boolean doesHit(float r, float x, float y) {
         if (0 <= x && x <= r && -r <= y && y <= 0) {
+            return true;
+        }
+
+        if (x <= 0 && y <= 0 && Math.pow(x, 2) + Math.pow(y, 2) <= Math.pow(r, 2)) {
+            return true;
+        }
+
+        if (x <= 0 && y >= 0 && y <= x + r/2) {
             return true;
         }
 
