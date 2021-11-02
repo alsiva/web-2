@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="taglibs-standard-spec-1.2.6-RC1">
+    <CLASSES>
+      <root url="jar://D:/wildfly-24.0.1.Final/modules/system/layers/base/javax/servlet/jstl/api/main/taglibs-standard-spec-1.2.6-RC1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

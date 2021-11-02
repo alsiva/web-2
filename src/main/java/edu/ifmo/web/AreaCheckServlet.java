@@ -6,9 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @WebServlet(value = "/check-area")
 public class AreaCheckServlet extends HttpServlet {
+    private final List<HitResult> hits = new ArrayList<>();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         float x = (float) req.getAttribute("x");
@@ -22,8 +27,8 @@ public class AreaCheckServlet extends HttpServlet {
         hitResult.setR(r);
         hitResult.setDoesHit(doesHit);
 
-        HitStorage hitStorage = (HitStorage) req.getSession().getServletContext().getAttribute("hitStorage");
-        hitStorage.getHits().add(hitResult);
+        hits.add(hitResult);
+        getServletContext().setAttribute("hits", hits);
 
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
@@ -61,7 +66,7 @@ public class AreaCheckServlet extends HttpServlet {
 
     @SuppressWarnings("RedundantIfStatement")
     private boolean doesHit(float r, float x, float y) {
-        if (0 <= x && x <= r && -r <= y && y <= 0) {
+        if (x <= r/2 && y <= r) {
             return true;
         }
 
@@ -69,7 +74,7 @@ public class AreaCheckServlet extends HttpServlet {
             return true;
         }
 
-        if (x <= 0 && y >= 0 && y <= x + r/2) {
+        if (x >= 0 && y <= 0 && y >= x - r/2) {
             return true;
         }
 
