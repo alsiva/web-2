@@ -48,3 +48,8 @@ header .cursive {
 #hitDataForm button[type=submit] {
     margin-top: 12px;
 }
+
+#area {
+    width: 400px;
+    height: 400px;
+}

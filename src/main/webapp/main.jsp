@@ -21,6 +21,7 @@
     Разработать веб-приложение на базе сервлетов и JSP, определяющее попадание точки на координатной плоскости в заданную область.
 </p>
 <img alt="Зона для тестирования попадания" src="areas.png" class="area"/>
+<canvas id="area"></canvas>
 <form id="hitDataForm" action="" method="post">
     <div>x
         <c:forEach var="x" items="${Arrays.asList(-3, -2, -1, 0, 1, 2, 3, 4, 5)}">
@@ -36,9 +37,9 @@
 
     <label>
         radius
-        <select name="r">
+        <select name="r" id="rInput">
             <c:forEach var="r" items="${Arrays.asList(1, 1.5, 2, 2.5, 3)}" varStatus="loop">
-                <option value="<c:out value="${r}"/>" ${loop.first ? 'selected' : ''}>
+                <option value="<c:out value="${r}"/>">
                     <c:out value="${r}"/>
                 </option>
             </c:forEach>
@@ -67,5 +68,6 @@
     </tbody>
 </table>
 <script src="validation.js"></script>
+<script src="canvas.js"></script>
 </body>
 </html>

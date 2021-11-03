@@ -45,17 +45,11 @@ public class ControllerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HitResult hitResult = new HitResult();
-        hitResult.setX(-1);
-        hitResult.setY(1);
-        hitResult.setR(3);
-        hitResult.setDoesHit(true);
-        req.setAttribute("previous", hitResult);
-
         getServletContext().getRequestDispatcher("/main.jsp").forward(req, resp);
     }
 
     private void writeError(HttpServletResponse resp, String error) throws IOException {
+        resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
         writer.println("<!DOCTYPE html>");

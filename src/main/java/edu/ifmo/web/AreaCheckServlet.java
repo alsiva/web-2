@@ -30,6 +30,14 @@ public class AreaCheckServlet extends HttpServlet {
         hits.add(hitResult);
         getServletContext().setAttribute("hits", hits);
 
+        String accept = req.getHeader("Accept");
+        if ("text/plain".equalsIgnoreCase(accept)) {
+            resp.setContentType("text/plain;charset=UTF-8");
+            PrintWriter writer = resp.getWriter();
+            writer.print(doesHit ? "true" : "false");
+            return;
+        }
+
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = resp.getWriter();
 
@@ -66,7 +74,7 @@ public class AreaCheckServlet extends HttpServlet {
 
     @SuppressWarnings("RedundantIfStatement")
     private boolean doesHit(float r, float x, float y) {
-        if (x <= r/2 && y <= r) {
+        if (0 <= x && x <= r/2 && 0 <= y && y <= r) {
             return true;
         }
 
