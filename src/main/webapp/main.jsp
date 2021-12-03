@@ -21,7 +21,7 @@
     Разработать веб-приложение на базе сервлетов и JSP, определяющее попадание точки на координатной плоскости в заданную область.
 </p>
 <img alt="Зона для тестирования попадания" src="areas.png" class="area"/>
-<canvas id="area"></canvas>
+<canvas id="area" ></canvas>
 <form id="hitDataForm" action="" method="post">
     <div>x
         <c:forEach var="x" items="${Arrays.asList(-3, -2, -1, 0, 1, 2, 3, 4, 5)}">
@@ -56,14 +56,14 @@
         <th>Попадание:</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody id="hitDataTable">
     <c:forEach var="hitResult" items="${applicationScope.hits}">
-    <tr>
-        <td> <c:out value="${hitResult.x}"/></td>
-        <td> <c:out value="${hitResult.y}"/></td>
-        <td> <c:out value="${hitResult.r}"/></td>
-        <td> <c:out value="${hitResult.doesHit ? \"Попадание есть\" : \"Попадания нет\"}"/></td>
-    </tr>
+        <tr>
+            <td> <c:out value="${hitResult.x}"/></td>
+            <td> <c:out value="${hitResult.y}"/></td>
+            <td> <c:out value="${hitResult.r}"/></td>
+            <td> <c:out value="${hitResult.doesHit ? \"Попадание есть\" : \"Попадания нет\"}"/></td>
+        </tr>
     </c:forEach>
     </tbody>
 </table>

@@ -141,14 +141,13 @@ canvas.addEventListener('click', function(event) {
     let canvasY = scaleY * (event.offsetY - shiftY);
     let r = Number.parseFloat(radiusSelector.options[radiusSelector.selectedIndex].value)
 
-    sendAjax(canvasX, canvasY, r)
-})
-
-function sendAjax(canvasX, canvasY, r) {
     let ratio = r / radius
     let x = canvasX * ratio
     let y = canvasY * ratio
+    sendAjax(x, y, canvasX, canvasY, r)
+})
 
+function sendAjax(x, y, canvasX, canvasY, r) {
     let xmlHttpRequest = new XMLHttpRequest();
     xmlHttpRequest.open('POST', '', true);
     xmlHttpRequest.setRequestHeader('Accept', 'text/plain')
@@ -161,7 +160,29 @@ function sendAjax(canvasX, canvasY, r) {
         if (xmlHttpRequest.status === 200) {
             let doesItHit = xmlHttpRequest.responseText.trim() === 'true'
             drawHit(canvasX, canvasY, doesItHit)
+            addHitToTable(x, y, r, doesItHit)
         }
     })
     xmlHttpRequest.send(new URLSearchParams({x, y, r}))
+}
+
+function addHitToTable(x, y, r, doesItHit) {
+    const tbody = document.getElementById("hitDataTable")
+
+    let tdX = document.createElement('td');
+    tdX.textContent = x
+    let tdY = document.createElement('td');
+    tdY.textContent = y
+    let tdR = document.createElement('td');
+    tdR.textContent = r
+    let tdDoesItHit = document.createElement('td');
+    tdDoesItHit.textContent = doesItHit ? "true" : "false"
+
+    let tr = document.createElement('tr');
+    tr.appendChild(tdX)
+    tr.appendChild(tdY)
+    tr.appendChild(tdR)
+    tr.appendChild(tdDoesItHit)
+
+    tbody.appendChild(tr)
 }
