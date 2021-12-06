@@ -135,15 +135,16 @@ function drawHit(x, y, doesItHit) {
 }
 
 
-let radiusSelector = hitDataForm.querySelector("#rInput");
 canvas.addEventListener('click', function(event) {
     let canvasX = scaleX * (event.offsetX - shiftX);
     let canvasY = scaleY * (event.offsetY - shiftY);
-    let r = Number.parseFloat(radiusSelector.options[radiusSelector.selectedIndex].value)
+    let r = getRadius()
 
     let ratio = r / radius
-    let x = canvasX * ratio
-    let y = canvasY * ratio
+
+    let x = Math.round(canvasX * ratio * 100)/100
+    let y = Math.round(canvasY * ratio * 100)/100
+
     sendAjax(x, y, canvasX, canvasY, r)
 })
 

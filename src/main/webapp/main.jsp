@@ -22,11 +22,11 @@
 </p>
 <img alt="Зона для тестирования попадания" src="areas.png" class="area"/>
 <canvas id="area" ></canvas>
-<form id="hitDataForm" action="" method="post">
+<form id="hitDataForm">
     <div>x
         <c:forEach var="x" items="${Arrays.asList(-3, -2, -1, 0, 1, 2, 3, 4, 5)}">
             <label> <c:out value="${x}"/>
-                <input type="radio" name="x" value="<c:out value="${x}"/>" ${x == 0 ? 'checked' : ''}>
+                <input id="xInput" type="radio" name="x" value="<c:out value="${x}"/>" ${x == 0 ? 'checked' : ''}>
             </label>
         </c:forEach>
     </div>
